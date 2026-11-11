@@ -1,20 +1,15 @@
-name: Jekyll site CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+name: Montar ISO SlotOS
+on: workflow_dispatch
 jobs:
-  build:
-
+  iso:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+      - uses: actions/checkout@v4
+      - name: Montar ISO
+        run: |
+          mkdir -p saida
+          docker run --rm --privileged -v "$PWD:/kit" -v "$PWD/saida:/out" alpine:latest sh /kit/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slotos-iso
+          path: saida/*.iso
