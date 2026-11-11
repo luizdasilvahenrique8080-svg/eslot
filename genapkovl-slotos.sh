@@ -43,7 +43,6 @@ mesa-gbm
 font-dejavu
 alsa-utils
 alsa-lib
-alsa-ucm-conf
 EOF
 
 # tty1 roda o jogo (e reinicia sozinho se o navegador fechar)
@@ -66,6 +65,7 @@ chmod 755 "$tmp"/usr/local/bin/slotgame
 # serviços
 rc_add devfs sysinit
 rc_add dmesg sysinit
+rc_add modloop sysinit
 rc_add udev sysinit
 rc_add udev-trigger sysinit
 rc_add udev-settle sysinit
@@ -76,7 +76,6 @@ rc_add sysctl boot
 rc_add hostname boot
 rc_add bootmisc boot
 rc_add hwclock boot
-rc_add alsa default
 
 rc_add mount-ro shutdown
 rc_add killprocs shutdown
