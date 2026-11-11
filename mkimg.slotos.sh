@@ -13,7 +13,7 @@ profile_slotos() {
 		eudev udev-init-scripts udev-init-scripts-openrc libinput
 		seatd cage chromium
 		mesa-dri-gallium mesa-egl mesa-gles mesa-gbm
-		font-dejavu alsa-utils alsa-lib alsa-ucm-conf
+		font-dejavu alsa-utils alsa-lib
 		linux-firmware-i915 linux-firmware-amdgpu linux-firmware-radeon
 		linux-firmware-nvidia linux-firmware-intel"
 	local _k
